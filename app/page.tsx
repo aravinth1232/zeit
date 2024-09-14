@@ -2,7 +2,11 @@
 export default function Home() {
   return (
    <>
-   <h1>Zeit</h1>
+        <main>
+          <div>
+            <h1>Welcome </h1>
+          </div>
+        </main>
    </>
   );
 }
