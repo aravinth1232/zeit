@@ -60,6 +60,8 @@ const Header = () => {
           <div className="flex-shrink-0">
             <a href="/" className="text-2xl font-bold text-white">
             <Image
+            alt='logo'
+            priority 
             src={logo}
             className='w-20 h-20'
 
@@ -71,7 +73,8 @@ const Header = () => {
 
           {
             links.map((link,index)=>(
-              <Link
+              <Link 
+              key={index}
               activeClass="text-red-500 font-bold"
               smooth={true}
               spy={true}

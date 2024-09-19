@@ -16,7 +16,6 @@ export default function Home() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Added state for success message visibility
 
   // Handle input changes
@@ -44,7 +43,6 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
         setIsSubmitting(false);
-        setIsSubmitted(true);
         setShowSuccessMessage(true); // Added: show success message after submission
         setFormData({
           name: '',
@@ -76,7 +74,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
         className="h-svh lg:h-screen flex items-center justify-start relative overflow-hidden"
       >
         <div className="z-10 px-10 w-full lg:w-3/4 flex flex-col gap-10 lg:gap-5">
-        <h1 className="text-2xl  font-semibold lg:text-3xl leading-[2.5rem] lg:leading-[3.5rem] "><span className="font-bold text-red-500 text-3xl  lg:text-4xl">Zeit</span>  seamlessly integrates influencer marketing with cutting-edge website development, providing a holistic approach to elevating your brand's online presence.</h1>
+        <h1 className="text-2xl  font-semibold lg:text-3xl leading-[2.5rem] lg:leading-[3.5rem] "><span className="font-bold text-red-500 text-3xl  lg:text-4xl">Zeit</span>  seamlessly integrates influencer marketing with cutting-edge website development, providing a holistic approach to elevating your brand&apos;s online presence.</h1>
 
         <Link
           to="contact" // ID of the Contact section
@@ -86,7 +84,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
           
         >
           <button className="bg-white text-red-500 font-bold flex justify-center items-center gap-[2px] px-4 py-2 border-2  hover:border-2 hover:border-black ">
-           <h1 className="">Let's Connect</h1>
+           <h1 className="">Let&apos;s Connect</h1>
            {/* <IoIosArrowForward /> */}
         </button>
         </Link>
