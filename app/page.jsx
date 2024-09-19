@@ -1,11 +1,11 @@
 
 "use client"
 
-import Loader from "../components/Loader"
-import Router from 'next/router';
+// import Loader from "../components/Loader"
+// import Router from 'next/router';
 import { Link } from 'react-scroll'
 import emailjs from 'emailjs-com';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 // import { IoIosArrowForward } from "react-icons/io";
 import Image from 'next/image';
 
