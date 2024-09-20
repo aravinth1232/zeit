@@ -108,7 +108,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
 
     emailjs
       .send(serviceID, templateID, formData, userID)
-      .then((response) => {
+      .then(() => {
        
         setIsSubmitting(false);
         setShowSuccessMessage(true); // Added: show success message after submission
@@ -119,7 +119,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
           message: '',
         });
       })
-      .catch((err) => {
+      .catch(() => {
        
         setIsSubmitting(false);
       });
