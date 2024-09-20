@@ -7,7 +7,7 @@ import { Link } from 'react-scroll'
 import emailjs from 'emailjs-com';
 import React, { useState,useEffect} from 'react';
 
-import { IoIosArrowForward } from "react-icons/io";
+// import { IoIosArrowForward } from "react-icons/io";
 import Image from 'next/image';
 
 import logo from "../app/logonew.png"
@@ -178,9 +178,11 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">{
 
-            why.map(({name,description, icon:IconComponent}) =>(
+            why.map(({name,description, icon:IconComponent,i}) =>(
               
-                <div className="p-6 bg-white rounded-lg shadow-lg" data-aos="fade-up">
+                <div
+                key={i}
+                className="p-6 bg-white rounded-lg shadow-lg" data-aos="fade-up">
                 <IconComponent className="text-red-500 text-4xl mb-4 mx-auto" />  
                 <h3 className='text-2xl font-bold text-red-500 mb-4' >{name}</h3>
                 <p className='text-gray-600'>{description}</p>
