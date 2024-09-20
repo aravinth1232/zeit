@@ -1,8 +1,6 @@
 
 "use client"
 
-// import Loader from "../components/Loader"
-// import Router from 'next/router';
 import { Link } from 'react-scroll'
 import emailjs from 'emailjs-com';
 import React, { useState,useEffect} from 'react';
@@ -25,6 +23,9 @@ import { FaUsers, FaBullhorn, FaLaptopCode } from 'react-icons/fa';
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+import Loader from '../components/Loader'; 
+
 
 
 
@@ -62,6 +63,17 @@ const why =[
 
 export default function Home() {
 
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); 
+
+    return () => clearTimeout(timer); 
+  }, []);
+
   
 
   const [formData, setFormData] = useState({
@@ -72,7 +84,7 @@ export default function Home() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Added state for success message visibility
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
 
   // Handle input changes
   const handleChange = (e) => {
@@ -97,7 +109,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
     emailjs
       .send(serviceID, templateID, formData, userID)
       .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
+       
         setIsSubmitting(false);
         setShowSuccessMessage(true); // Added: show success message after submission
         setFormData({
@@ -108,7 +120,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
         });
       })
       .catch((err) => {
-        console.error('FAILED...', err);
+       
         setIsSubmitting(false);
       });
   };
@@ -131,14 +143,16 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
 
    <>
 
-        <div>
+      {loading 
+      ? (<Loader />)
+      :(            <div>
       
 
       <section
         id="about"
-        className="h-svh lg:h-screen flex items-center justify-start relative overflow-hidden"  
+        className="2xl:container 2xl:mx-auto h-svh lg:h-screen flex items-center justify-start relative overflow-hidden"  
       >
-        <div className="z-10 px-10 w-full lg:w-3/4 flex flex-col gap-10 lg:gap-5" data-aos="zoom-in">
+        <div className=" z-10 px-10 w-full lg:w-3/4 flex flex-col gap-10 lg:gap-5" data-aos="zoom-in">
         <h1 className="text-2xl  font-semibold lg:text-3xl leading-[2.5rem] lg:leading-[3.5rem] text-gray-600  "><span className="font-bold text-red-500 text-3xl  lg:text-4xl ">Zeit</span>  seamlessly integrates <span className='animate-pulse'>influencer marketing</span>  with cutting-edge <span className='animate-pulse'>website development</span> , providing a holistic approach to elevating your brand&apos;s online presence.</h1>
 
         <Link
@@ -195,12 +209,12 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
 
 
       {/* Services Section */}
-      <section id="services" className="py-16 flex flex-col items-center justify-center ">
+      <section id="services" className="py-14 flex flex-col items-center justify-center ">
       <div className="container mx-auto px-4 text-center" data-aos="fade-up">
         <h2 className="text-4xl font-bold text-red-500 ">Our Services</h2>
         </div>
         
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 py-5 lg:py-10 px-10' >{
+        <div className='container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 py-5 lg:py-10 px-10' >{
           
             services.map((service,index)=>(
               
@@ -242,7 +256,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
 
 
       {/* Contact Section */}
-      <section id="contact" className="py-7 flex items-center justify-center " data-aos="fade-up">
+      <section id="contact" className="pb-24 flex items-center justify-center " data-aos="fade-up">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
         <h2 className="text-3xl font-bold text-center mb-6 text-red-500">Contact Us</h2>
 
@@ -394,7 +408,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
 
     </section>
 
-    <div className="relative flex items-center">
+    <div className=" relative flex items-center">
         <a 
           href="https://wa.me/1234567890"
           className="fixed bottom-14 right-3 md:bottom-4 md:right-4 bg-red-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50 group"
@@ -449,7 +463,7 @@ const userID = 'OUx0znxEEgANdIw9N'; // EmailJS User ID
 
 
     </div>
-
+      )}
    </>
   );
 }

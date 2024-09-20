@@ -3,7 +3,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll'
-import { FiMenu } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 import Image from 'next/image';
 import logo from "../app/logonew.png"
 
@@ -21,7 +21,17 @@ const links =[
 const Header = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // For sidebar toggle
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.classList.add('overflow-hidden'); 
+    } else {
+      document.body.classList.remove('overflow-hidden'); 
+    }
+  }, [isSidebarOpen]);
+
 
   // Change background on scroll
   useEffect(() => {
@@ -37,13 +47,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-     useEffect(() => {
-    if (isSidebarOpen) {
-      document.body.classList.add('overflow-hidden'); 
-    } else {
-      document.body.classList.remove('overflow-hidden'); 
-    }
-  }, [isSidebarOpen]);
+     
 
 
   return (
@@ -92,11 +96,56 @@ const Header = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="text-gray-300 hover:text-white focus:outline-none"
+              className="text-red-500 hover:text-white focus:outline-none"
             >
-              <FiMenu size={28} />
+              <FiMenu size={28}  />
             </button>
           </div>
+          	  
+		  <div
+      className={`fixed  inset-0 z-40 transition-transform transform ${
+        isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      } bg-red-100 bg-opacity-100`}
+    >
+      {/* Close Button */}
+      <div className="flex justify-end p-4">
+        <button
+          onClick={() => setIsSidebarOpen(false)}
+          className="text-red-500 hover:text-white"
+        >
+          <FiX size={28}  />
+        </button>
+      </div>
+
+      {/* Sidebar Links */}
+      <div className="flex flex-col items-center justify-center h-full gap-6 ">
+        
+      {
+            links.map((link,index)=>(
+              <Link 
+              key={index}
+              activeClass="text-red-500 font-bold"
+              smooth={true}
+              spy={true}
+              offset={-70}
+              duration={500}
+              className="text-black font-semibold text-xl   cursor-pointer"
+              to={link.address}
+              onClick={() => setIsSidebarOpen(false)} 
+              >{link.name}</Link>
+            ))
+            
+          }
+        
+        
+      </div>
+    </div>
+	
+	
+          
+
+
+
         </div>
       </div>
     </nav>
